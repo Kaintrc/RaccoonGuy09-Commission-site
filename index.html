@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Raccoonguy09's Commission Site</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <nav class="navbar">
     <h1 class="logo">Raccoonguy09</h1>
     <ul class="nav-links">
       <li><a href="#" onclick="navigateTo('home')">Home</a></li>
       <li><a href="#" onclick="navigateTo('commissions')">Commissions</a></li>
-      <li><a href="#" onclick="navigateTo('gallery')">Gallery</a></li>
+      <li><a href="#" onclick="navigateTo('gallery')">Posts</a></li>
       <li><a href="#" onclick="navigateTo('contact')">Contact</a></li>
     </ul>
   </nav>
@@ -45,20 +47,16 @@
     </section>
 
     <section id="gallery" class="page">
-      <h2>Art Gallery</h2>
-      <blockquote class="bluesky-embed" data-bluesky-uri="at://did:plc:d2dns754mpah7yfam5fdkxhc/app.bsky.feed.post/3m2egdnjaek26" data-bluesky-cid="bafyreiesjyd6wmvme665psezjr7yau4hnb4dbkayr5747tnqbgrei5wdta" data-bluesky-embed-color-mode="system">
-        <p lang="en">
-          Soulfighter Naafiri TF<br><br>
-          You should probably stop touching random goo that comes out of the ceiling<br><br>
-          Requested by @pinkpix.exploration.team!<br><br>
-          #Tf #LeagueOfLegends #Transformation #Naafiri #GooTF #Transformation<br><br>
-          <a href="https://bsky.app/profile/did:plc:d2dns754mpah7yfam5fdkxhc/post/3m2egdnjaek26?ref_src=embed">[image or embed]</a>
-        </p>
-        &mdash; Raco (<a href="https://bsky.app/profile/did:plc:d2dns754mpah7yfam5fdkxhc?ref_src=embed">@racoguy.bsky.social</a>) 
-        <a href="https://bsky.app/profile/did:plc:d2dns754mpah7yfam5fdkxhc/post/3m2egdnjaek26?ref_src=embed">Oct 4, 2025 at 12:56 PM</a>
-      </blockquote>
+      <h2>Latest Posts</h2>
+      <div class="gallery-flex-row">
+        <div id="post-list" class="scroll-container"></div>
+      </div>
+      <button id="loadMoreBtn">Load More</button>
       <script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
     </section>
+
+
+
 
     <section id="contact" class="page">
       <h2>Contact</h2>
@@ -67,6 +65,7 @@
         <li><b>Discord:</b> raccoonguy09</li>
       </ul>
     </section>
+
   </main>
 
   <div id="overlay">
@@ -81,6 +80,11 @@
     </div>
   </div>
 
+  <div id="corner-gif-wrapper" aria-hidden="true">
+    <img id="corner-gif" src="gifs/PlaceHolder_Raco2.gif" alt="corner gif">
+  </div>
+
   <script src="script.js"></script>
 </body>
+
 </html>

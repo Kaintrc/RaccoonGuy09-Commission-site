@@ -67,34 +67,185 @@ function nextImage() {
   showImage();
 }
 
-/* Navegación entre secciones con animación lateral */
-let currentPage = "home";
+function setGifCornerByPage(page) {
+  const body = document.body;
+  const gifWrapper = document.getElementById("corner-gif-wrapper");
+  const all = ["home-gif", "commissions-gif", "gallery-gif", "contact-gif"];
+  body.classList.remove(...all);
+  body.classList.add(`${page}-gif`);
+  if (gifWrapper) {
+    gifWrapper.classList.remove("moving");
+    void gifWrapper.offsetWidth;
+    gifWrapper.classList.add("moving");
+  }
+}
 
-// Orden de las páginas
 const pageOrder = ["home", "commissions", "gallery", "contact"];
+let currentPage = "home";
+let isTransitioning = false;
 
 function navigateTo(target) {
-  if (target === currentPage) return;
+  if (target === currentPage || isTransitioning) return;
+  isTransitioning = true;
 
   const current = document.getElementById(currentPage);
   const next = document.getElementById(target);
-
   const idxCurrent = pageOrder.indexOf(currentPage);
   const idxNext = pageOrder.indexOf(target);
-  const direction = idxNext > idxCurrent ? 'right' : 'left';
+  const direction = idxNext > idxCurrent ? "right" : "left";
 
-  next.classList.add('active');
-  next.style.left = direction === 'right' ? '100%' : '-100%';
-  requestAnimationFrame(() => {
-    current.style.left = direction === 'right' ? '-100%' : '100%';
-    current.style.opacity = 0;
-    next.style.left = '0';
-    next.style.opacity = 1;
-  });
+  next.classList.add("active");
+  next.style.transition = "none";
+  next.style.opacity = "0";
+  next.style.left = direction === "right" ? "100%" : "-100%";
+  next.style.zIndex = "5";
+  current.style.zIndex = "4";
+  void next.offsetWidth;
+  next.style.transition = current.style.transition = "all 0.6s ease-in-out";
+  current.style.left = direction === "right" ? "-100%" : "100%";
+  current.style.opacity = "0";
+  next.style.left = "0";
+  next.style.opacity = "1";
+
+  setGifCornerByPage(target);
 
   setTimeout(() => {
-    current.classList.remove('active');
-    current.style.left = direction === 'right' ? '-100%' : '100%';
+    current.classList.remove("active");
+    current.style.transition = next.style.transition = "";
+    current.style.left = current.style.opacity = current.style.zIndex = "";
+    next.style.zIndex = "";
     currentPage = target;
-  }, 600);
+    isTransitioning = false;
+  }, 650);
+}
+
+function RandomPostRaco(){
+  Posts
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  setGifCornerByPage("home");
+});
+
+
+
+let blueskyCursor = null;
+let blueskyLoading = false;
+const blueskyUser = "racoguy.bsky.social"; // change if needed
+const blueskyList = document.getElementById("post-list");
+const blueskyBtn = document.getElementById("loadMoreBtn");
+
+async function loadBlueskyPosts() {
+  if (blueskyLoading) {
+    console.log("Already loading, ignoring new request.");
+    return;
+  }
+  blueskyLoading = true;
+  blueskyBtn.textContent = "Loading...";
+
+  try {
+    const url = new URL("https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed");
+    url.searchParams.set("actor", blueskyUser);
+    url.searchParams.set("limit", "10");
+    if (blueskyCursor) url.searchParams.set("cursor", blueskyCursor);
+
+    console.log("Fetching:", url.toString());
+
+    const res = await fetch(url);
+    console.log("Response status:", res.status);
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(`HTTP ${res.status}: ${text}`);
+    }
+
+    const data = await res.json();
+    console.log("Fetched data:", data);
+
+    blueskyCursor = data.cursor || null;
+    console.log("Next cursor:", blueskyCursor);
+
+    if (!Array.isArray(data.feed)) {
+      console.error("Feed missing or not an array:", data);
+      return;
+    }
+
+
+    const postsWithImages = data.feed.filter(p => {
+      const embed = p.post.record?.embed;
+      const hasImages = embed?.images && embed.images.length > 0;
+      if (!hasImages) console.log("Skipping post (no images):", p.post.uri);
+      return hasImages;
+    });
+
+    console.log(`Found ${postsWithImages.length} posts with images.`);
+
+    if (postsWithImages.length === 0) {
+      blueskyList.insertAdjacentHTML(
+        "beforeend",
+        `<p style="text-align:center;color:#aaa;">No posts with images found.</p>`
+      );
+      blueskyBtn.textContent = "Load More";
+      blueskyLoading = false;
+      return;
+    }
+
+    postsWithImages.forEach(p => {
+      const record = p.post.record;
+      const author = p.post.author;
+      const uri = p.post.uri;
+      const cid = p.post.cid;
+      
+      const blockquote = document.createElement("blockquote");
+      blockquote.className = "bluesky-embed";
+      blockquote.dataset.blueskyUri = uri;
+      blockquote.dataset.blueskyCid = cid;
+      blockquote.dataset.blueskyEmbedColorMode = "system";
+      blockquote.innerHTML = `
+        <p lang="en">
+          ${record.text?.replace(/\n/g, "<br><br>") ?? ""}
+          <br><br>
+          <a href="https://bsky.app/profile/${author.did}/post/${uri.split("/").pop()}?ref_src=embed">[image or embed]</a>
+        </p>
+        &mdash; ${author.displayName || author.handle}
+        (<a href="https://bsky.app/profile/${author.did}?ref_src=embed">@${author.handle}</a>)
+        <a href="https://bsky.app/profile/${author.did}/post/${uri.split("/").pop()}?ref_src=embed">${new Date(record.createdAt).toLocaleString()}</a>
+      `;
+      blueskyList.appendChild(blockquote);
+    });
+
+    
+    if (window.BlueskyEmbed && typeof window.BlueskyEmbed.processEmbeds === 'function') {
+      window.BlueskyEmbed.processEmbeds();
+    } else {
+      
+      const existing = document.querySelector('script[src*="embed.bsky.app/static/embed.js"]');
+      if (existing) {
+        const newScript = document.createElement('script');
+        newScript.async = true;
+        newScript.src = existing.src;
+        newScript.charset = 'utf-8';
+        document.body.appendChild(newScript);
+      }
+    }
+
+
+    if (!blueskyCursor) {
+      console.log("No more posts available (no cursor returned).");
+      blueskyBtn.style.display = "none";
+    }
+  } catch (err) {
+    console.error("❌ Bluesky error:", err);
+  } finally {
+    blueskyBtn.textContent = "Load More";
+    blueskyLoading = false;
+  }
+}
+
+// initialize
+if (blueskyBtn && blueskyList) {
+  blueskyBtn.addEventListener("click", loadBlueskyPosts);
+  document.addEventListener("DOMContentLoaded", loadBlueskyPosts);
+} else {
+  console.error("Missing #post-list or #loadMoreBtn elements in DOM.");
 }
