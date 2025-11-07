@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raccoonguy09's Commission Site</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <h1 class="logo">Raccoonguy09</h1>
+    <ul class="nav-links">
+      <li><a href="#" onclick="navigateTo('home')">Home</a></li>
+      <li><a href="#" onclick="navigateTo('commissions')">Commissions</a></li>
+      <li><a href="#" onclick="navigateTo('gallery')">Gallery</a></li>
+      <li><a href="#" onclick="navigateTo('contact')">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main id="main-container">
+    <section id="home" class="page active">
+      <header>
+        <h2>Welcome to Raccoonguy09's Commission site!</h2>
+      </header>
+    </section>
+
+    <section id="commissions" class="page">
+      <div class="cards">
+        <div class="card" onclick="showCommission('emotes')">
+          <h3>Emotes</h3>
+          <p>Placeholder.</p>
+          <p class="price">$3.5 – $6.5</p>
+        </div>
+        <div class="card" onclick="showCommission('doodles')">
+          <h3>Doodles</h3>
+          <p>Placeholder.</p>
+          <p class="price">$5 – $15</p>
+        </div>
+        <div class="card" onclick="showCommission('painting')">
+          <h3>Digital Painting</h3>
+          <p>Placeholder.</p>
+          <p class="price">$100 – $200</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="page">
+      <h2>Art Gallery</h2>
+      <blockquote class="bluesky-embed" data-bluesky-uri="at://did:plc:d2dns754mpah7yfam5fdkxhc/app.bsky.feed.post/3m2egdnjaek26" data-bluesky-cid="bafyreiesjyd6wmvme665psezjr7yau4hnb4dbkayr5747tnqbgrei5wdta" data-bluesky-embed-color-mode="system">
+        <p lang="en">
+          Soulfighter Naafiri TF<br><br>
+          You should probably stop touching random goo that comes out of the ceiling<br><br>
+          Requested by @pinkpix.exploration.team!<br><br>
+          #Tf #LeagueOfLegends #Transformation #Naafiri #GooTF #Transformation<br><br>
+          <a href="https://bsky.app/profile/did:plc:d2dns754mpah7yfam5fdkxhc/post/3m2egdnjaek26?ref_src=embed">[image or embed]</a>
+        </p>
+        &mdash; Raco (<a href="https://bsky.app/profile/did:plc:d2dns754mpah7yfam5fdkxhc?ref_src=embed">@racoguy.bsky.social</a>) 
+        <a href="https://bsky.app/profile/did:plc:d2dns754mpah7yfam5fdkxhc/post/3m2egdnjaek26?ref_src=embed">Oct 4, 2025 at 12:56 PM</a>
+      </blockquote>
+      <script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
+    </section>
+
+    <section id="contact" class="page">
+      <h2>Contact</h2>
+      <p>Want to commission something? Reach out via:</p>
+      <ul>
+        <li><b>Discord:</b> raccoonguy09</li>
+      </ul>
+    </section>
+  </main>
+
+  <div id="overlay">
+    <div id="content">
+      <button id="closeBtn" onclick="closeOverlay()">✕</button>
+      <h2>Commission Details</h2>
+      <div id="gallery-view">
+        <button onclick="prevImage()">⟨</button>
+        <img id="gallery-image" src="" alt="Commission Example">
+        <button onclick="nextImage()">⟩</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
