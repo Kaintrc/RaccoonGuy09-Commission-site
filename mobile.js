@@ -101,3 +101,18 @@ function goToDesktop() {
   localStorage.setItem('skipMobile', 'true');
   window.location.replace('index.html');
 }
+
+// Allow desktop -> mobile: clear opt-out and redirect to mobile index
+window.goToMobile = function() {
+    try {
+        // remove local storage skip flag
+        localStorage.removeItem('skipMobile');
+        // remove cookie if present (mobileFullSiteClicked)
+        document.cookie = 'mobileFullSiteClicked=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT;';
+    } catch (e) {
+        // ignore
+        console.warn('goToMobile: could not clear storage', e);
+    }
+    // redirect to mobile page
+    window.location.replace('mobile_index.html');
+};
