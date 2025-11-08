@@ -82,8 +82,15 @@ window.mobileCheck = function() {
   return check;
 };
 
-if(mobileCheck() && !localStorage.getItem('skipMobile')) {
-  window.location.replace('mobile_index.html');
+// Only redirect to the mobile page if we're NOT already on it.
+try {
+    var _isOnMobileIndex = /mobile_index\.html$/i.test(window.location.pathname) || /mobile_index\.html/i.test(window.location.href);
+    if (!_isOnMobileIndex && mobileCheck() && !localStorage.getItem('skipMobile')) {
+        window.location.replace('mobile_index.html');
+    }
+} catch (e) {
+    // if anything goes wrong, don't block page load
+    console.error('mobile redirect check error', e);
 }
 
 window.skipMobile = function() {
