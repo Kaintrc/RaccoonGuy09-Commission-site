@@ -21,10 +21,18 @@ body {
     line-height: 1.4;
 
     /* Fondo infinito */
+    /* background gradient + solid fallback color to avoid white flash during repaints */
+    background-color: #0f0c29;
     background: linear-gradient(135deg, #0f0c29, #302b63, #24243e, #0f0c29);
     background-size: 400% 400%;
-    animation: gradientShift 20s ease infinite;
-    background-attachment: fixed;
+    /* use scroll on mobile to avoid issues with fixed backgrounds */
+    background-attachment: scroll;
+    /* slightly slower and smoother animation to reduce heavy repaints */
+    animation: gradientShift 30s linear infinite;
+    /* promote layer to compositor to reduce white flashes */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: background-position;
     min-height: 100vh;
 }
 
@@ -261,4 +269,11 @@ body {
     }
     .contact-btn::before { left: 10px; width: 24px; height: 24px; }
     .contact-btn { padding-left: 48px; }
+}
+
+/* Respect user's reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+    body { animation: none !important; background-position: 50% 50% !important; }
+    .slide-btn { animation: none !important; }
+    .commission-btn, .contact-btn { transition: none !important; }
 }
