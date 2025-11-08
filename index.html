@@ -47,7 +47,6 @@
     </section>
 
     <section id="gallery" class="page">
-      <h2>Latest Posts</h2>
       <div class="gallery-flex-row">
         <div id="post-list" class="scroll-container"></div>
       </div>
@@ -61,9 +60,29 @@
     <section id="contact" class="page">
       <h2>Contact</h2>
       <p>Want to commission something? Reach out via:</p>
-      <ul>
-        <li><b>Discord:</b> raccoonguy09</li>
-      </ul>
+      <div class="contact-buttons">
+        <button id="blueskyBtn" class="contact-btn bluesky"
+          onclick="window.open('https://bsky.app/profile/racoguy.bsky.social', '_blank')">
+          <span class="icon bluesky-icon"></span> Bluesky
+        </button>
+
+        <button id="twitterBtn" class="contact-btn twitter"
+          onclick="window.open('https://twitter.com/raccoonguy_09', '_blank')">
+          <span class="icon twitter-icon"></span> Twitter
+        </button>
+
+        <button id="deviantartBtn" class="contact-btn deviantart"
+          onclick="window.open('https://www.deviantart.com/raccoonguy09', '_blank')">
+          <span class="icon deviantart-icon"></span> DeviantArt
+        </button>
+
+        <button id="discordBtn" class="contact-btn discord" onclick="copyDiscord()">
+          <span class="icon discord-icon"></span> Discord
+        </button>
+      </div>
+
+      <p id="discordCopyMsg" class="popup-copy">Copied!</p>
+
     </section>
 
   </main>
@@ -81,7 +100,7 @@
   </div>
 
   <div id="corner-gif-wrapper" aria-hidden="true">
-    <img id="corner-gif" src="gifs/PlaceHolder_Raco2.gif" alt="corner gif">
+    <img id="corner-gif" src="Gifs/PlaceHolder_Raco2.gif" alt="corner gif">
   </div>
 
   <script src="script.js"></script>

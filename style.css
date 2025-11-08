@@ -1,158 +1,22 @@
-#gallery .gallery-flex-row {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: center;
-  width: 100%;
-  max-width: 1300px;
-  margin: 0 auto;
-  gap: 0;
+/* ==================================================
+   style.css — Limpio y organizado (opción A)
+   - Conserva tu diseño original
+   - Corrige duplicados y llaves rotas
+   - Galería Bluesky 3x3 al final (sección separada)
+   - Scroll vertical funcional y botón Load More visible
+   ================================================== */
+
+/* -------------------------
+   BASE / LAYOUT
+   ------------------------- */
+:root {
+  --gif-size: 120px;
+  --gif-gap: 10px;
+  --gif-radius: 12px;
+  --gif-z: 9999;
+  --gif-trans: 0.5s cubic-bezier(0.4,0,0.2,1);
 }
 
-@media (max-width: 1024px) {
-  #post-list {
-    grid-template-columns: repeat(2, 1fr);
-    min-height: 600px;
-    max-height: 800px;
-  }
-  #loadMoreBtn {
-    min-width: 120px;
-    margin-left: 16px;
-  }
-  #gallery .gallery-flex-row {
-    max-width: 100vw;
-  }
-}
-
-@media (max-width: 700px) {
-  #gallery .gallery-flex-row {
-    flex-direction: column;
-    align-items: stretch;
-    max-width: 100vw;
-  }
-  #post-list {
-    max-width: 100vw;
-    min-height: 400px;
-    padding: 16px 4vw 8px 4vw;
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-  #loadMoreBtn {
-    margin: 18px auto 0 auto;
-    width: 100%;
-    max-width: 320px;
-    min-width: 0;
-    height: 48px;
-    align-self: center;
-    display: block;
-  }
-}
-#gallery .gallery-flex-row {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: center;
-  width: 100%;
-  max-width: 1300px;
-  margin: 0 auto;
-}
-
-#post-list {
-  flex: 1 1 0;
-}
-
-#loadMoreBtn {
-  margin: 32px 0 0 32px;
-  align-self: flex-start;
-  min-width: 160px;
-  max-height: 56px;
-  height: 56px;
-  display: block;
-}
-/* Bluesky Gallery Grid */
-#post-list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
-  max-height: 75vh;
-  overflow-y: auto;
-  scroll-behavior: smooth;
-  scrollbar-width: thin;
-  scrollbar-color: #a58eff #1c1c2b;
-  border-radius: 10px;
-  background: rgba(30, 30, 50, 0.3);
-}
-
-.bluesky-post {
-  background: #1c1c1c;
-  border-radius: 10px;
-  padding: 10px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-  color: #fff;
-  text-align: center;
-  transition: transform 0.2s, box-shadow 0.2s;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.bluesky-post:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 12px rgba(165, 142, 255, 0.5);
-}
-
-.bluesky-post img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  display: block;
-  margin-bottom: 8px;
-}
-
-.bluesky-post p {
-  font-size: 0.95rem;
-  color: #ccc;
-  margin: 6px 0 0 0;
-}
-
-.bluesky-post a {
-  color: #a58eff;
-  text-decoration: none;
-  margin-top: 6px;
-  font-size: 0.9em;
-  transition: color 0.2s;
-}
-.bluesky-post a:hover {
-  color: #fff;
-}
-
-/* Scrollbar style */
-#post-list::-webkit-scrollbar {
-  width: 8px;
-}
-#post-list::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 4px;
-}
-#post-list::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-@media (max-width: 768px) {
-  #post-list {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (max-width: 480px) {
-  #post-list {
-    grid-template-columns: 1fr;
-  }
-}
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -164,19 +28,22 @@ body {
 }
 
 @keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
+main {
+  margin-top: 80px;
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 80px);
+  overflow: hidden;
+}
+
+/* -------------------------
+   NAVBAR
+   ------------------------- */
 .navbar {
   position: fixed;
   top: 0;
@@ -195,15 +62,8 @@ body {
 }
 
 @keyframes slideDown {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
 }
 
 .logo {
@@ -240,26 +100,16 @@ body {
   transition: width 0.3s;
 }
 
-.nav-links a:hover {
-  color: #fff;
-}
+.nav-links a:hover { color: #fff; }
+.nav-links a:hover::after { width: 100%; }
 
-.nav-links a:hover::after {
-  width: 100%;
-}
-
-main {
-  margin-top: 80px;
-  position: relative;
-  width: 100%;
-  min-height: calc(100vh - 80px);
-  overflow: hidden;
-}
-
+/* -------------------------
+   PAGES + TRANSITIONS
+   ------------------------- */
 .page {
   position: absolute;
   width: 100%;
-  top: 0;
+  top: 80px; /* altura del navbar */
   left: 100%;
   opacity: 0;
   transition: all 0.6s ease-in-out;
@@ -267,39 +117,21 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* alineamos al inicio en vez de centrar */
   padding: 1rem;
 }
 
-.page.active {
-  left: 0;
-  opacity: 1;
-}
+.page.active { left: 0; opacity: 1; }
 
-#home.active {
-  animation: fadeInUp 1s ease-out;
-}
-
+#home.active { animation: fadeInUp 1s ease-out; }
 @keyframes fadeInUp {
-  from {
-    transform: translateY(30px);
-    opacity: 0;
-  }
-
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  from { transform: translateY(30px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
 }
 
-.page.slide-left {
-  left: -100%;
-}
-
-.page.slide-right {
-  left: 100%;
-}
-
+/* -------------------------
+   CARDS (Commissions)
+   ------------------------- */
 .cards {
   display: flex;
   flex-wrap: wrap;
@@ -326,13 +158,8 @@ main {
   border-color: #a58eff;
 }
 
-.card h3 {
-  color: #e0e0e0;
-}
-
-.card p {
-  color: #ccc;
-}
+.card h3 { color: #e0e0e0; }
+.card p  { color: #ccc; }
 
 .price {
   font-weight: bold;
@@ -340,6 +167,9 @@ main {
   margin-top: 0.5rem;
 }
 
+/* -------------------------
+   OVERLAY / MODAL (Commission View)
+   ------------------------- */
 #overlay {
   position: fixed;
   top: 0;
@@ -354,27 +184,7 @@ main {
   animation: fadeIn 0.3s ease-out;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes zoomIn {
-  from {
-    transform: scale(0.5);
-    opacity: 0;
-  }
-
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 #content {
   background: #23232d;
@@ -388,9 +198,151 @@ main {
   animation: zoomIn 0.4s ease-out;
 }
 
+@keyframes zoomIn {
+  from { transform: scale(0.5); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+#closeBtn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  border: none;
+  background: none;
+  color: #ccc;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+#closeBtn:hover { color: #fff; }
+
+/* Gallery-view inside modal */
+#gallery-view {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+}
+#gallery-view img {
+  max-width: 400px;
+  max-height: 300px;
+  border-radius: 8px;
+  margin: 0 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.7);
+  border: 1px solid #555;
+}
+#gallery-view button {
+  background: #444;
+  color: #e0e0e0;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.3rem;
+  transition: background-color 0.3s;
+}
+#gallery-view button:hover { background: #666; }
+
+/* -------------------------
+   HOME / CONTACT (small pieces)
+   ------------------------- */
+#home header {
+  text-align: center;
+  max-width: 800px;
+  padding: 2rem;
+}
+#home h2 {
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  margin-bottom: 1rem;
+  color: #a58eff;
+  text-shadow: 0 0 20px rgba(165,142,255,0.5);
+}
+
+#contact {
+  text-align: center;
+  padding: 1rem 2rem 2rem 2rem; /* menos padding arriba */
+  scroll-margin-top: 90px; /* para anclas, ajusta según navbar */
+}
+#contact h2 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  margin-bottom: 1rem;
+  color: #a58eff;
+}
+#contact p { font-size: clamp(1rem, 2.5vw, 1.2rem); margin-bottom: 1.5rem; }
+#contact ul { list-style: none; padding: 0; margin: 0; }
+#contact li {
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  background: rgba(42,42,56,0.6);
+  border-radius: 8px;
+  border: 1px solid #444;
+  display: inline-block;
+  min-width: 280px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+#contact li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(165,142,255,0.4);
+}
+#contact a { color: #a58eff; text-decoration: none; transition: color 0.3s; }
+#contact a:hover { color: #c5a8ff; }
+
+/* -------------------------
+   CORNER GIF
+   ------------------------- */
+#corner-gif-wrapper {
+  position: fixed;
+  width: var(--gif-size);
+  height: var(--gif-size);
+  z-index: var(--gif-z);
+  pointer-events: none;
+  transition: top var(--gif-trans), left var(--gif-trans), right var(--gif-trans), bottom var(--gif-trans);
+}
+#corner-gif-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: var(--gif-radius);
+}
+body.home-gif #corner-gif-wrapper { top: var(--gif-gap); left: var(--gif-gap); right: auto; bottom: auto; }
+body.commissions-gif #corner-gif-wrapper { top: var(--gif-gap); right: var(--gif-gap); left: auto; bottom: auto; }
+body.gallery-gif #corner-gif-wrapper { bottom: var(--gif-gap); left: var(--gif-gap); right: auto; top: auto; }
+body.contact-gif #corner-gif-wrapper { bottom: var(--gif-gap); right: var(--gif-gap); left: auto; top: auto; }
+
+@keyframes gifPop {
+  0% { transform: scale(0.8) rotate(0deg); opacity: 0.6; }
+  40% { transform: scale(1.3) rotate(10deg); opacity: 1; }
+  70% { transform: scale(0.9) rotate(-6deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+#corner-gif-wrapper.moving { animation: gifPop 0.6s ease-out; }
+
+/* -------------------------
+   UTIL / SMALL HELPERS
+   ------------------------- */
+.scroll-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 1rem;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #a58eff #1c1c2b;
+  animation: fadeInScroll 0.8s ease-in-out;
+}
+@keyframes fadeInScroll {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+/* -------------------------
+   LOAD MORE BUTTON (default look)
+   ------------------------- */
 #loadMoreBtn {
   display: block;
-  margin: 0 auto 0 auto;
+  margin: 32px auto 48px auto;
   padding: 16px 44px;
   background: linear-gradient(90deg, #a58eff 0%, #6c63ff 100%);
   border: none;
@@ -404,415 +356,108 @@ main {
   text-shadow: 0 0 8px #a58eff, 0 0 16px #6c63ff;
   transition: background 0.2s, transform 0.2s, box-shadow 0.2s, color 0.2s;
   outline: none;
-  position: sticky;
-  bottom: 0;
-  z-index: 100;
-  overflow: hidden;
-  margin-top: 32px;
-  margin-bottom: 0;
+  position: relative; /* no sticky */
+  z-index: 1;
   width: fit-content;
   background-clip: padding-box;
 }
-#gallery {
-  padding-bottom: 32px;
-}
-}
-
-#gallery-view img {
-  max-width: 400px;
-  max-height: 300px;
-  border-radius: 8px;
-  margin: 0 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
-  border: 1px solid #555;
+#loadMoreBtn:hover, #loadMoreBtn:focus {
+  background: linear-gradient(90deg, #6c63ff 0%, #a58eff 100%);
+  color: #fffbe6;
+  transform: translateY(-3px) scale(1.06);
+  box-shadow: 0 0 32px 8px #a58eff, 0 0 48px 16px #6c63ff99;
 }
 
-#gallery-view button {
-  background: #444;
-  color: #e0e0e0;
-  border: none;
-  padding: 0.6rem 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 1.3rem;
-  transition: background-color 0.3s;
+/* -------------------------
+   RESPONSIVE - general
+   ------------------------- */
+@media (max-width: 1024px) {
+  main { margin-top: 100px; }
 }
-
-#gallery-view button:hover {
-  background: #666;
-}
-
-#home header {
-  text-align: center;
-  max-width: 800px;
-  padding: 2rem;
-}
-
-#home h2 {
-  font-size: clamp(1.5rem, 5vw, 3rem);
-  margin-bottom: 1rem;
-  color: #a58eff;
-  text-shadow: 0 0 20px rgba(165, 142, 255, 0.5);
-}
-
-#contact {
-  text-align: center;
-  padding: 2rem;
-}
-
-#contact h2 {
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
-  margin-bottom: 1rem;
-  color: #a58eff;
-}
-
-#contact p {
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
-  margin-bottom: 1.5rem;
-}
-
-#contact ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-#contact li {
-  font-size: clamp(1rem, 2.5vw, 1.1rem);
-  padding: 0.8rem;
-  margin: 0.5rem 0;
-  background: rgba(42, 42, 56, 0.6);
-  border-radius: 8px;
-  border: 1px solid #444;
-  display: inline-block;
-  min-width: 280px;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-#contact li:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 15px rgba(165, 142, 255, 0.4);
-}
-
-#contact a {
-  color: #a58eff;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-#contact a:hover {
-  color: #c5a8ff;
-}
-
-:root {
-  --gif-size: 120px;
-  --gif-gap: 10px;
-  --gif-radius: 12px;
-  --gif-z: 9999;
-  --gif-trans: 0.5s cubic-bezier(0.4,0,0.2,1);
-}
-
-#corner-gif-wrapper {
-  position: fixed;
-  width: var(--gif-size);
-  height: var(--gif-size);
-  z-index: var(--gif-z);
-  pointer-events: none;
-  transition:
-    top var(--gif-trans),
-    left var(--gif-trans),
-    right var(--gif-trans),
-    bottom var(--gif-trans);
-}
-
-#corner-gif-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border-radius: var(--gif-radius);
-}
-
-body.home-gif #corner-gif-wrapper {
-  top: var(--gif-gap);
-  left: var(--gif-gap);
-  right: auto;
-  bottom: auto;
-}
-body.commissions-gif #corner-gif-wrapper {
-  top: var(--gif-gap);
-  right: var(--gif-gap);
-  left: auto;
-  bottom: auto;
-}
-body.gallery-gif #corner-gif-wrapper {
-  bottom: var(--gif-gap);
-  left: var(--gif-gap);
-  right: auto;
-  top: auto;
-}
-body.contact-gif #corner-gif-wrapper {
-  bottom: var(--gif-gap);
-  right: var(--gif-gap);
-  left: auto;
-  top: auto;
-}
-
-@keyframes gifPop {
-  0% { transform: scale(0.8) rotate(0deg); opacity: 0.6; }
-  40% { transform: scale(1.3) rotate(10deg); opacity: 1; }
-  70% { transform: scale(0.9) rotate(-6deg); }
-  100% { transform: scale(1) rotate(0deg); }
-}
-#corner-gif-wrapper.moving { animation: gifPop 0.6s ease-out; }
 
 @media (max-width: 768px) {
-  :root {
-    --gif-size: 80px;
-    --gif-gap: 6px;
-  }
+  .navbar { padding: 0.6rem 1rem; }
+  .logo { font-size: 1.2rem; margin-bottom: 0.3rem; }
+  .nav-links { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+  .nav-links a { font-size: 0.9rem; }
+  main { margin-top: 100px; }
+  .page { min-height: calc(100vh - 100px); }
+  .card { width: 180px; padding: 1rem; }
+  #post-list { grid-template-columns: repeat(2, 1fr); } /* safe default on smaller */
 }
+
+/* -------------------------
+   RESPONSIVE - small
+   ------------------------- */
 @media (max-width: 480px) {
-  :root {
-    --gif-size: 56px;
-    --gif-gap: 2px;
-  }
-}
-
-@media (max-width: 768px) {
-  .navbar {
-    padding: 0.6rem 1rem;
-  }
-
-  .logo {
-    font-size: 1.2rem;
-    margin-bottom: 0.3rem;
-  }
-
-  .nav-links {
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .nav-links a {
-    font-size: 0.9rem;
-  }
-
-  main {
-    margin-top: 100px;
-  }
-
-  .page {
-    min-height: calc(100vh - 100px);
-  }
-
-  #home header {
-    padding: 1rem;
-  }
-
-  #contact li {
-    min-width: 90%;
-    max-width: 300px;
-  }
-
-  .cards {
-    gap: 0.8rem;
-    padding: 0.8rem;
-  }
-
-  .card {
-    width: 180px;
-    padding: 1rem;
-  }
-
-  #content {
-    max-width: 90%;
-    padding: 1rem;
-  }
-
-  #gallery-view {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  #gallery-view img {
-    max-width: 90%;
-    max-height: 250px;
-    margin: 0.5rem 0;
-  }
-
-  #gallery-view button {
-    padding: 0.4rem 0.8rem;
-    font-size: 1.1rem;
-  }
-
-  #gallery {
-    padding: 1rem;
-  }
-
-  #gallery h2 {
-    font-size: clamp(1.5rem, 4vw, 2rem);
-  }
-
-  .bluesky-embed {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
+  .logo { font-size: 1rem; }
+  .nav-links { gap: 0.5rem; }
+  main { margin-top: 110px; }
+  .card { width: 150px; padding: 0.8rem; }
+  #post-list { grid-template-columns: 1fr; }
+  #loadMoreBtn {
+    margin: 24px auto 48px auto;
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 32px 32px 16px 32px;
-    max-height: 1100px;
-    min-height: 900px;
-    overflow-y: auto;
-    scroll-behavior: smooth;
-    scrollbar-width: thin;
-    scrollbar-color: #a58eff #1c1c2b;
-    border-radius: 16px;
-    background: rgba(30, 30, 50, 0.3);
-    gap: 0.5rem;
-  }
-
-  .nav-links a {
-    font-size: 0.8rem;
-    padding: 0.2rem;
-  }
-
-  main {
-    margin-top: 110px;
-  }
-
-
-  .card h3 {
+    max-width: 320px;
+    padding: 12px 0;
+    border-radius: 12px;
     font-size: 1rem;
-  }
-
-  .card p {
-    font-size: 0.85rem;
-  }
-
-  .price {
-    font-size: 0.9rem;
-  }
-
-  #content {
-    max-width: 95%;
-    padding: 0.8rem;
-  }
-
-  #content h2 {
-    font-size: 1.3rem;
-  }
-
-  #content p {
-    font-size: 0.9rem;
-  }
-
-  #closeBtn {
-    font-size: 1rem;
-    top: 5px;
-    right: 10px;
-  }
-
-  #gallery-view {
-    flex-direction: column;
-    gap: 0.3rem;
-  }
-
-  #gallery-view img {
-    max-width: 95%;
-    max-height: 180px;
-    margin: 0.3rem 0;
-  }
-
-  #gallery-view button {
-    padding: 0.3rem 0.6rem;
-    font-size: 1rem;
-    width: 100%;
-    max-width: 200px;
-  }
-
-  #gallery {
-    padding: 0.5rem;
-  }
-
-  #gallery h2 {
-    font-size: 1.3rem;
-    margin-bottom: 0.8rem;
-  }
-
-  .bluesky-embed {
-    transform: scale(0.95);
-    transform-origin: top center;
-  }
-
-  #contact {
-    padding: 1rem;
-  }
-
-  #contact li {
-    min-width: 95%;
-    font-size: 0.9rem;
-  }
-
-  .scroll-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  max-height: 70vh;
-  overflow-y: auto;
-  padding: 1rem;
-  scroll-behavior: smooth;
-  scrollbar-width: thin;
-  scrollbar-color: #a58eff #1c1c2b;
-  animation: fadeInScroll 0.8s ease-in-out;
-}
-
-@keyframes fadeInScroll {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
   }
 }
 
-/* -------------------------------
-   Bluesky 3x3 Scrollable Grid
--------------------------------- */
+/* ==================================================
+   GALERÍA BLUESKY — SECCIÓN SEPARADA (AL FINAL)
+   - 3x3 grid por defecto
+   - scroll vertical dentro del grid
+   - padding-bottom para espacio del botón Load More
+   ================================================== */
+
+/* Contenedor padre: si existía gallery-flex-row, forzamos bloque */
+#gallery .gallery-flex-row {
+  display: block;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* Grid: 3 columnas por defecto, gap y scroll */
 #post-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* always 3 per row */
+  grid-template-columns: repeat(3, 1fr); /* 3 por fila en desktop */
   gap: 20px;
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
   padding: 20px;
-  max-height: 75vh; /* scrollable area */
+  padding-bottom: 120px; /* espacio para botón */
+  max-height: 70vh;
   overflow-y: auto;
   scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: #a58eff #1c1c2b;
   border-radius: 10px;
   background: rgba(30, 30, 50, 0.3);
+  box-sizing: border-box;
 }
 
-/* Each grid cell (post) */
+/* Tiles */
 .bluesky-post {
   background: #1c1c1c;
   border-radius: 10px;
   padding: 10px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 8px rgba(0,0,0,0.4);
   color: #fff;
   text-align: center;
   transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .bluesky-post:hover {
   transform: scale(1.03);
-  box-shadow: 0 0 12px rgba(165, 142, 255, 0.5);
+  box-shadow: 0 0 12px rgba(165,142,255,0.5);
 }
 
 /* Images inside each post */
@@ -821,92 +466,185 @@ body.contact-gif #corner-gif-wrapper {
   height: auto;
   border-radius: 8px;
   display: block;
+  margin-bottom: 8px;
 }
 
-/* Caption */
+/* Text / caption */
 .bluesky-post p {
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   color: #ccc;
-  margin-top: 6px;
+  margin: 6px 0 0 0;
 }
 
-/* Scrollbar style */
-#post-list::-webkit-scrollbar {
-  width: 8px;
+/* Links inside posts */
+.bluesky-post a {
+  color: #a58eff;
+  text-decoration: none;
+  margin-top: 6px;
+  font-size: 0.9em;
 }
+.bluesky-post a:hover { color: #fff; }
+
+/* Scrollbar styling for webkit */
+#post-list::-webkit-scrollbar { width: 8px; }
 #post-list::-webkit-scrollbar-thumb {
   background: #333;
   border-radius: 4px;
 }
-#post-list::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
+#post-list::-webkit-scrollbar-thumb:hover { background: #555; }
 
-/* Load more button */
-
+/* Ensure gallery container stacks vertically and doesn't stretch horizontally */
 #gallery {
   display: flex;
   flex-direction: column;
   align-items: stretch;
 }
 
-#post-list {
-  flex: 1 1 auto;
-}
-
-
-#loadMoreBtn {
-  display: block;
-  margin: 32px auto 0 auto;
-  padding: 14px 38px;
-  background: linear-gradient(90deg, #a58eff 0%, #6c63ff 100%);
-  border: none;
-  border-radius: 14px;
-  color: #fff;
-  font-size: 1.18rem;
-  font-weight: bold;
-  cursor: pointer;
-  letter-spacing: 0.5px;
-  box-shadow: 0 0 16px 2px #a58eff, 0 0 32px 4px #6c63ff44;
-  text-shadow: 0 0 8px #a58eff, 0 0 16px #6c63ff;
-  transition: background 0.2s, transform 0.2s, box-shadow 0.2s, color 0.2s;
-  outline: none;
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-}
-#loadMoreBtn:hover, #loadMoreBtn:focus {
-  background: linear-gradient(90deg, #6c63ff 0%, #a58eff 100%);
-  color: #fffbe6;
-  transform: translateY(-3px) scale(1.08);
-  box-shadow: 0 0 32px 8px #a58eff, 0 0 48px 16px #6c63ff99;
-  text-shadow: 0 0 16px #fffbe6, 0 0 32px #a58eff;
+/* Small adjustments for tablet and phone */
+@media (max-width: 1024px) {
+  #post-list {
+    grid-template-columns: repeat(2, 1fr);
+    max-height: 65vh;
+    padding-bottom: 140px;
+  }
 }
 
 @media (max-width: 700px) {
+  #gallery .gallery-flex-row { width: 100%; }
+  #post-list {
+    grid-template-columns: 1fr;
+    max-height: 60vh;
+    padding: 16px 4vw 8px 4vw;
+    padding-bottom: 160px;
+    gap: 18px;
+  }
   #loadMoreBtn {
     margin: 18px auto 0 auto;
     width: 100%;
     max-width: 320px;
     min-width: 0;
     height: 48px;
-    font-size: 1rem;
-    padding: 12px 0;
-    border-radius: 12px;
+    align-self: center;
+    display: block;
   }
 }
 
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-  #post-list {
-    grid-template-columns: repeat(2, 1fr); /* 2 per row on tablet */
+.popup-copy {
+  position: fixed;
+  bottom: 40px; /* distancia desde el fondo */
+  left: 50%; /* centrado horizontal */
+  transform: translateX(-50%) translateY(20px); /* ajusta para la animación */
+  background: rgba(165, 142, 255, 0.95);
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-size: 1rem;
+  box-shadow: 0 0 12px rgba(165, 142, 255, 0.7);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 5000;
+}
+
+.popup-copy.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0); 
+}
+
+
+
+/* -------------------------------------------------------------------
+   CONTACT BUTTONS – 2 COLUMNS RESPONSIVE
+------------------------------------------------------------------- */
+.contact-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  .contact-buttons {
+    grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 480px) {
-  #post-list {
-    grid-template-columns: 1fr; /* 1 per row on phone */
-  }
+.contact-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #2a2a38;
+  border: 1px solid #444;
+  color: #fff;
+  padding: 14px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  justify-content: center;
+  transition: 
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease,
+    border-color 0.3s ease;
 }
 
+.contact-btn:hover {
+  transform: translateY(-4px) scale(1.03);
 }
+
+.icon {
+  width: 26px;
+  height: 26px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.bluesky-icon {
+  background-image: url("https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/bluesky.svg");
+}
+
+.twitter-icon {
+  background-image: url("https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg");
+}
+
+.deviantart-icon {
+  background-image: url("https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/deviantart.svg");
+}
+
+.discord-icon {
+  background-image: url("https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/discord.svg");
+}
+
+/* Bluesky — azul cielo */
+.contact-btn.bluesky:hover {
+  border-color: #0285ff;
+  box-shadow: 0 0 20px #0285ff55;
+  background: #0285ff25;
+}
+
+/* Twitter / X — blanco semi con glow */
+.contact-btn.twitter:hover {
+  border-color: #ffffff;
+  box-shadow: 0 0 20px #ffffff55;
+  background: #ffffff15;
+  color: #fff;
+}
+
+/* DeviantArt — verde */
+.contact-btn.deviantart:hover {
+  border-color: #05cc47;
+  box-shadow: 0 0 20px #05cc4755;
+  background: #05cc4720;
+}
+
+/* Discord — morado */
+.contact-btn.discord:hover {
+  border-color: #5865f2;
+  box-shadow: 0 0 20px #5865f255;
+  background: #5865f220;
+}
+
+
+/* End of CSS */

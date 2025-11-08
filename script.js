@@ -1,3 +1,16 @@
+function copyDiscord() {
+  const discordUser = "raccoonguy09";
+  navigator.clipboard.writeText(discordUser).then(() => {
+
+    const popup = document.getElementById("discordCopyMsg");
+    popup.classList.add("show");
+
+    setTimeout(() => {
+      popup.classList.remove("show");
+    }, 2000);
+  });
+}
+
 const commissions = {
   emotes: {
     title: "Emotes",
@@ -42,7 +55,18 @@ function showCommission(type) {
 }
 
 function closeOverlay() {
-  document.getElementById('overlay').style.display = 'none';
+  const overlay = document.getElementById('overlay');
+  overlay.style.transition = 'all 0.6s ease-in-out';
+  overlay.style.opacity = '1';
+  overlay.style.transform = 'translateY(0)';
+  overlay.style.opacity = '0';
+  overlay.style.transform = 'translateY(30px)';
+  setTimeout(() => {
+    overlay.style.display = 'none';
+    overlay.style.transition = '';
+    overlay.style.opacity = '';
+    overlay.style.transform = '';
+  }, 600);
 }
 
 function showImage() {
@@ -119,7 +143,7 @@ function navigateTo(target) {
   }, 650);
 }
 
-function RandomPostRaco(){
+function RandomPostRaco() {
   Posts
 }
 
@@ -131,7 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 let blueskyCursor = null;
 let blueskyLoading = false;
-const blueskyUser = "racoguy.bsky.social"; // change if needed
+const blueskyUser = "racoguy.bsky.social";
 const blueskyList = document.getElementById("post-list");
 const blueskyBtn = document.getElementById("loadMoreBtn");
 
@@ -195,7 +219,7 @@ async function loadBlueskyPosts() {
       const author = p.post.author;
       const uri = p.post.uri;
       const cid = p.post.cid;
-      
+
       const blockquote = document.createElement("blockquote");
       blockquote.className = "bluesky-embed";
       blockquote.dataset.blueskyUri = uri;
@@ -214,11 +238,11 @@ async function loadBlueskyPosts() {
       blueskyList.appendChild(blockquote);
     });
 
-    
+
     if (window.BlueskyEmbed && typeof window.BlueskyEmbed.processEmbeds === 'function') {
       window.BlueskyEmbed.processEmbeds();
     } else {
-      
+
       const existing = document.querySelector('script[src*="embed.bsky.app/static/embed.js"]');
       if (existing) {
         const newScript = document.createElement('script');
@@ -235,7 +259,7 @@ async function loadBlueskyPosts() {
       blueskyBtn.style.display = "none";
     }
   } catch (err) {
-    console.error("❌ Bluesky error:", err);
+    console.error("Bluesky error:", err);
   } finally {
     blueskyBtn.textContent = "Load More";
     blueskyLoading = false;
