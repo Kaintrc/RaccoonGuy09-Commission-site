@@ -96,9 +96,8 @@ window.mobileCheck = function() {
   }
 })();
 
-// FUNCIÓN PARA SALTAR MÓVIL
-window.skipMobile = function() {
+
+function goToDesktop() {
   localStorage.setItem('skipMobile', 'true');
-  // opcional: redirigir al desktop inmediatamente
   window.location.replace('index.html');
-};
+}
