@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Raccoonguy09 — Mobile</title>
+    <link rel="icon" type="image/x-icon" href="Images/favicon.ico">
+    <link rel="stylesheet" href="mobile.css">
+    <script src="mobile.js" defer></script>
+</head>
+
+<body>
+    <header class="mobile-header">
+        <h1 class="logo">Raccoonguy09</h1>
+        <p class="subtitle">Commissions • Contact</p>
+    </header>
+
+    <main class="mobile-main">
+        <section class="mobile-info">
+            <h2>Welcome!</h2>
+            <p>This simplified view shows only commissions and contact to keep things fast and focused on mobile.</p>
+        </section>
+
+        <nav class="mobile-nav">
+            <a href="#" id="show-commissions" class="btn">Commissions</a>
+            <a href="#" id="show-contact" class="btn">Contact</a>
+        </nav>
+
+        <!-- COMMISSIONS -->
+        <section id="commissions-section" class="section-hidden">
+            <h3>Commissions</h3>
+            <div class="comm-list">
+                <button class="commission-btn" data-title="Emotes" data-price="$3.5–$6.5"
+                    data-desc="Small emote drawings, delivered as PNG">Emotes — $3.5–$6.5</button>
+                <button class="commission-btn" data-title="Doodles" data-price="$5–$15"
+                    data-desc="Quick doodles and sketches">Doodles — $5–$15</button>
+                <button class="commission-btn" data-title="Digital Painting" data-price="$100–$200"
+                    data-desc="Full digital paintings with background">Digital Painting — $100–$200</button>
+            </div>
+            <button class="btn back-ghost mobile-back">Back</button>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact-section" class="section-hidden">
+            <h3>Contact</h3>
+            <div class="contact-list">
+                <a class="btn contact-btn bluesky" href="https://bsky.app/profile/racoguy.bsky.social"
+                    target="_blank">Bluesky</a>
+                <a class="btn contact-btn twitter" href="https://twitter.com/raccoonguy_09" target="_blank">Twitter</a>
+                <a class="btn contact-btn deviantart" href="https://www.deviantart.com/raccoonguy09"
+                    target="_blank">DeviantArt</a>
+                <button class="btn contact-btn discord" id="copy-discord" data-discord="Raccoon#1234">Copy
+                    Discord</button>
+
+            </div>
+            <button class="btn back-ghost mobile-back">Back</button>
+        </section>
+
+        <footer class="mobile-footer">
+            <a class="link" href="index.html">Open full site</a>
+        </footer>
+    </main>
+
+    <!-- OVERLAY -->
+    <div id="mobile-overlay" class="overlay" aria-hidden="true">
+        <div class="panel" role="dialog" aria-modal="true">
+            <button id="overlay-close" class="overlay-close">✕</button>
+            <h3 id="overlay-title">Title</h3>
+            <p id="overlay-desc"></p>
+            <p id="overlay-price" style="font-weight:700;margin-top:0.6rem;"></p>
+        </div>
+    </div>
+</body>
+
+</html>

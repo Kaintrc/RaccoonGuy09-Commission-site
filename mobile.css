@@ -1,0 +1,264 @@
+:root {
+    --accent: #a58eff;
+    --bg: #121126;
+    --card: #2a2a38;
+    --text: #e0e0e0;
+    --panel-bg: #23232d;
+    --panel-border: #444;
+    --shadow-color: rgba(165,142,255,0.3);
+}
+
+/* GLOBAL */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--text);
+    line-height: 1.4;
+
+    /* Fondo infinito */
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e, #0f0c29);
+    background-size: 400% 400%;
+    animation: gradientShift 20s ease infinite;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+@keyframes gradientShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* HEADER */
+.mobile-header {
+    padding: 1.2rem;
+    text-align: center;
+    background: linear-gradient(90deg, var(--accent), #6c63ff);
+    border-bottom: 1px solid #333;
+    box-shadow: 0 0 20px var(--shadow-color);
+    animation: slideDown 0.8s ease-out;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+}
+
+.logo {
+    font-size: 1.4rem;
+    color: #fff;
+}
+
+.subtitle {
+    margin-top: 0.2rem;
+    color: #fffde6;
+}
+
+/* NAVIGATION */
+.mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1.2rem 0;
+    padding: 0 0.4rem;
+}
+
+/* BUTTONS */
+.btn {
+    display: block;
+    text-align: center;
+    padding: 1.1rem;
+    border-radius: 12px;
+    background: linear-gradient(90deg, var(--accent), #6c63ff);
+    color: #0b0720;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    box-shadow: 0 6px 18px rgba(101,80,255,0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn:active {
+    transform: scale(0.995);
+}
+
+/* BACK BUTTON */
+.back-ghost {
+    background: rgba(255,255,255,0.18);
+    color: var(--text);
+    font-weight: 600;
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 0.9rem;
+    border-radius: 12px;
+    margin-top: 12px;
+    box-shadow: 0 4px 12px rgba(255,255,255,0.08);
+}
+
+/* HIDDEN SECTIONS */
+.section-hidden {
+    display: none;
+}
+
+/* INFO BOX */
+.mobile-info {
+    background: rgba(34,34,40,0.6);
+    padding: 1rem;
+    border-radius: 12px;
+    margin-top: 0.6rem;
+    border: 1px solid #444;
+}
+
+/* COMMISSION BUTTONS */
+.comm-list, .contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 0.6rem;
+}
+
+.commission-btn {
+    padding: 0.9rem;
+    border-radius: 12px;
+    background: linear-gradient(90deg,#2a2a38,#3a3a50);
+    color: var(--text);
+    border: 1px solid var(--panel-border);
+    font-weight: 600;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+    text-align: left;
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    transition: transform 0.32s cubic-bezier(0.2,0,0.2,1), box-shadow 0.26s ease, background 0.26s ease;
+}
+.commission-btn.popout {
+    transform: translateY(-4px) scale(1.06);
+    box-shadow: 0 28px 56px rgba(165,142,255,0.24);
+}
+
+/* CONTACT BUTTONS */
+.contact-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(90deg,#2a2a38,#3a3a50);
+    border: 1px solid #6c63ff;
+    color: var(--text);
+    padding: 12px 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+    position: relative;
+    padding-left: 52px;
+}
+.contact-btn:hover {
+    transform: translateY(-4px);
+}
+
+/* Contact platform colors (hover) */
+.contact-btn.bluesky { border-color: #0285ff; box-shadow: 0 0 20px #0285ff55; background: #0285ff20; }
+.contact-btn.twitter { border-color: #fff; box-shadow: 0 0 20px #ffffff55; background: #ffffff15; color: #fff; }
+.contact-btn.deviantart { border-color: #05cc47; box-shadow: 0 0 20px #05cc4755; background: #05cc4720; }
+.contact-btn.discord { border-color: #5865f2; box-shadow: 0 0 20px #5865f255; background: #5865f220; }
+
+/* Contact icons */
+.contact-btn::before {
+    content: "";
+    position: absolute;
+    left: 12px;
+    width: 28px;
+    height: 28px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 6px;
+    opacity: 0.98;
+}
+
+/* SLIDE ANIMATION */
+.slide-btn {
+    animation: slideDownBtn 0.36s cubic-bezier(0.2,0,0.2,1);
+}
+@keyframes slideDownBtn {
+    from { transform: translateY(-20px) scale(0.98); opacity: 0; }
+    to   { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* OVERLAY / MODAL */
+.overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(10,10,15,0.85);
+    z-index: 2000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 220ms ease;
+}
+.overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+.overlay .panel {
+    width: min(92vw,600px);
+    background: var(--panel-bg);
+    color: var(--text);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 22px 48px rgba(0,0,0,0.6);
+    transform: translateY(-12px) scale(0.96);
+    opacity: 0;
+    transition: transform 320ms cubic-bezier(0.2,0,0.2,1), opacity 220ms;
+    border: 1px solid var(--panel-border);
+}
+.overlay.show .panel {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+.overlay .overlay-close {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    background: none;
+    border: none;
+    color: #ccc;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* FOOTER */
+.mobile-footer {
+    text-align: center;
+    margin-top: 1rem;
+}
+.link {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* RESPONSIVE */
+@media (min-width: 600px) {
+    .mobile-main {
+        max-width: 540px;
+        margin: 0 auto;
+    }
+}
+@media (max-width: 768px){
+    body { background-attachment: scroll; background-size: 600% 600%; }
+}
+@media (max-width: 480px){
+    .btn, .commission-btn, .contact-btn {
+        font-size: 0.95rem;
+        padding: 0.9rem;
+    }
+    .contact-btn::before { left: 10px; width: 24px; height: 24px; }
+    .contact-btn { padding-left: 48px; }
+}
