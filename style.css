@@ -1,14 +1,4 @@
-/* ==================================================
-   style.css — Limpio y organizado (opción A)
-   - Conserva tu diseño original
-   - Corrige duplicados y llaves rotas
-   - Galería Bluesky 3x3 al final (sección separada)
-   - Scroll vertical funcional y botón Load More visible
-   ================================================== */
 
-/* -------------------------
-   BASE / LAYOUT
-   ------------------------- */
 :root {
   --gif-size: 120px;
   --gif-gap: 10px;
@@ -41,9 +31,6 @@ main {
   overflow: hidden;
 }
 
-/* -------------------------
-   NAVBAR
-   ------------------------- */
 .navbar {
   position: fixed;
   top: 0;
@@ -103,13 +90,10 @@ main {
 .nav-links a:hover { color: #fff; }
 .nav-links a:hover::after { width: 100%; }
 
-/* -------------------------
-   PAGES + TRANSITIONS
-   ------------------------- */
 .page {
   position: absolute;
   width: 100%;
-  top: 80px; /* altura del navbar */
+  top: 80px;
   left: 100%;
   opacity: 0;
   transition: all 0.6s ease-in-out;
@@ -117,7 +101,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* alineamos al inicio en vez de centrar */
+  justify-content: flex-start;
   padding: 1rem;
 }
 
@@ -129,9 +113,6 @@ main {
   to   { transform: translateY(0); opacity: 1; }
 }
 
-/* -------------------------
-   CARDS (Commissions)
-   ------------------------- */
 .cards {
   display: flex;
   flex-wrap: wrap;
@@ -167,9 +148,6 @@ main {
   margin-top: 0.5rem;
 }
 
-/* -------------------------
-   OVERLAY / MODAL (Commission View)
-   ------------------------- */
 #overlay {
   position: fixed;
   top: 0;
@@ -215,7 +193,6 @@ main {
 }
 #closeBtn:hover { color: #fff; }
 
-/* Gallery-view inside modal */
 #gallery-view {
   display: flex;
   align-items: center;
@@ -242,9 +219,6 @@ main {
 }
 #gallery-view button:hover { background: #666; }
 
-/* -------------------------
-   HOME / CONTACT (small pieces)
-   ------------------------- */
 #home header {
   text-align: center;
   max-width: 800px;
@@ -259,8 +233,8 @@ main {
 
 #contact {
   text-align: center;
-  padding: 1rem 2rem 2rem 2rem; /* menos padding arriba */
-  scroll-margin-top: 90px; /* para anclas, ajusta según navbar */
+  padding: 1rem 2rem 2rem 2rem;
+  scroll-margin-top: 90px;
 }
 #contact h2 {
   font-size: clamp(1.8rem, 4vw, 2.5rem);
@@ -287,9 +261,7 @@ main {
 #contact a { color: #a58eff; text-decoration: none; transition: color 0.3s; }
 #contact a:hover { color: #c5a8ff; }
 
-/* -------------------------
-   CORNER GIF
-   ------------------------- */
+
 #corner-gif-wrapper {
   position: fixed;
   width: var(--gif-size);
@@ -317,9 +289,7 @@ body.contact-gif #corner-gif-wrapper { bottom: var(--gif-gap); right: var(--gif-
 }
 #corner-gif-wrapper.moving { animation: gifPop 0.6s ease-out; }
 
-/* -------------------------
-   UTIL / SMALL HELPERS
-   ------------------------- */
+
 .scroll-container {
   display: flex;
   flex-direction: column;
@@ -337,9 +307,7 @@ body.contact-gif #corner-gif-wrapper { bottom: var(--gif-gap); right: var(--gif-
   to   { transform: translateY(0); opacity: 1; }
 }
 
-/* -------------------------
-   LOAD MORE BUTTON (default look)
-   ------------------------- */
+
 #loadMoreBtn {
   display: block;
   margin: 32px auto 48px auto;
@@ -356,7 +324,7 @@ body.contact-gif #corner-gif-wrapper { bottom: var(--gif-gap); right: var(--gif-
   text-shadow: 0 0 8px #a58eff, 0 0 16px #6c63ff;
   transition: background 0.2s, transform 0.2s, box-shadow 0.2s, color 0.2s;
   outline: none;
-  position: relative; /* no sticky */
+  position: relative; 
   z-index: 1;
   width: fit-content;
   background-clip: padding-box;
@@ -368,9 +336,7 @@ body.contact-gif #corner-gif-wrapper { bottom: var(--gif-gap); right: var(--gif-
   box-shadow: 0 0 32px 8px #a58eff, 0 0 48px 16px #6c63ff99;
 }
 
-/* -------------------------
-   RESPONSIVE - general
-   ------------------------- */
+
 @media (max-width: 1024px) {
   main { margin-top: 100px; }
 }
@@ -386,9 +352,7 @@ body.contact-gif #corner-gif-wrapper { bottom: var(--gif-gap); right: var(--gif-
   #post-list { grid-template-columns: repeat(2, 1fr); } /* safe default on smaller */
 }
 
-/* -------------------------
-   RESPONSIVE - small
-   ------------------------- */
+
 @media (max-width: 480px) {
   .logo { font-size: 1rem; }
   .nav-links { gap: 0.5rem; }
@@ -405,14 +369,7 @@ body.contact-gif #corner-gif-wrapper { bottom: var(--gif-gap); right: var(--gif-
   }
 }
 
-/* ==================================================
-   GALERÍA BLUESKY — SECCIÓN SEPARADA (AL FINAL)
-   - 3x3 grid por defecto
-   - scroll vertical dentro del grid
-   - padding-bottom para espacio del botón Load More
-   ================================================== */
 
-/* Contenedor padre: si existía gallery-flex-row, forzamos bloque */
 #gallery .gallery-flex-row {
   display: block;
   width: 100%;
@@ -420,16 +377,15 @@ body.contact-gif #corner-gif-wrapper { bottom: var(--gif-gap); right: var(--gif-
   margin: 0 auto;
 }
 
-/* Grid: 3 columnas por defecto, gap y scroll */
 #post-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 por fila en desktop */
+  grid-template-columns: repeat(3, 1fr); 
   gap: 20px;
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
   padding: 20px;
-  padding-bottom: 120px; /* espacio para botón */
+  padding-bottom: 120px;
   max-height: 70vh;
   overflow-y: auto;
   scroll-behavior: smooth;
@@ -440,7 +396,7 @@ body.contact-gif #corner-gif-wrapper { bottom: var(--gif-gap); right: var(--gif-
   box-sizing: border-box;
 }
 
-/* Tiles */
+
 .bluesky-post {
   background: #1c1c1c;
   border-radius: 10px;
@@ -460,7 +416,6 @@ body.contact-gif #corner-gif-wrapper { bottom: var(--gif-gap); right: var(--gif-
   box-shadow: 0 0 12px rgba(165,142,255,0.5);
 }
 
-/* Images inside each post */
 .bluesky-post img {
   width: 100%;
   height: auto;
@@ -469,14 +424,12 @@ body.contact-gif #corner-gif-wrapper { bottom: var(--gif-gap); right: var(--gif-
   margin-bottom: 8px;
 }
 
-/* Text / caption */
 .bluesky-post p {
   font-size: 0.95rem;
   color: #ccc;
   margin: 6px 0 0 0;
 }
 
-/* Links inside posts */
 .bluesky-post a {
   color: #a58eff;
   text-decoration: none;
@@ -485,7 +438,7 @@ body.contact-gif #corner-gif-wrapper { bottom: var(--gif-gap); right: var(--gif-
 }
 .bluesky-post a:hover { color: #fff; }
 
-/* Scrollbar styling for webkit */
+
 #post-list::-webkit-scrollbar { width: 8px; }
 #post-list::-webkit-scrollbar-thumb {
   background: #333;
@@ -493,14 +446,13 @@ body.contact-gif #corner-gif-wrapper { bottom: var(--gif-gap); right: var(--gif-
 }
 #post-list::-webkit-scrollbar-thumb:hover { background: #555; }
 
-/* Ensure gallery container stacks vertically and doesn't stretch horizontally */
+
 #gallery {
   display: flex;
   flex-direction: column;
   align-items: stretch;
 }
 
-/* Small adjustments for tablet and phone */
 @media (max-width: 1024px) {
   #post-list {
     grid-template-columns: repeat(2, 1fr);
@@ -531,9 +483,9 @@ body.contact-gif #corner-gif-wrapper { bottom: var(--gif-gap); right: var(--gif-
 
 .popup-copy {
   position: fixed;
-  bottom: 40px; /* distancia desde el fondo */
-  left: 50%; /* centrado horizontal */
-  transform: translateX(-50%) translateY(20px); /* ajusta para la animación */
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
   background: rgba(165, 142, 255, 0.95);
   color: #fff;
   padding: 12px 18px;
@@ -553,9 +505,6 @@ body.contact-gif #corner-gif-wrapper { bottom: var(--gif-gap); right: var(--gif-
 
 
 
-/* -------------------------------------------------------------------
-   CONTACT BUTTONS – 2 COLUMNS RESPONSIVE
-------------------------------------------------------------------- */
 .contact-buttons {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -617,14 +566,12 @@ body.contact-gif #corner-gif-wrapper { bottom: var(--gif-gap); right: var(--gif-
   background-image: url("https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/discord.svg");
 }
 
-/* Bluesky — azul cielo */
 .contact-btn.bluesky:hover {
   border-color: #0285ff;
   box-shadow: 0 0 20px #0285ff55;
   background: #0285ff25;
 }
 
-/* Twitter / X — blanco semi con glow */
 .contact-btn.twitter:hover {
   border-color: #ffffff;
   box-shadow: 0 0 20px #ffffff55;
@@ -632,14 +579,12 @@ body.contact-gif #corner-gif-wrapper { bottom: var(--gif-gap); right: var(--gif-
   color: #fff;
 }
 
-/* DeviantArt — verde */
 .contact-btn.deviantart:hover {
   border-color: #05cc47;
   box-shadow: 0 0 20px #05cc4755;
   background: #05cc4720;
 }
 
-/* Discord — morado */
 .contact-btn.discord:hover {
   border-color: #5865f2;
   box-shadow: 0 0 20px #5865f255;
@@ -647,4 +592,3 @@ body.contact-gif #corner-gif-wrapper { bottom: var(--gif-gap); right: var(--gif-
 }
 
 
-/* End of CSS */
