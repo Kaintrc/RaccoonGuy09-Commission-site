@@ -8,7 +8,6 @@
     --shadow-color: rgba(165,142,255,0.3);
 }
 
-/* GLOBAL */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -19,17 +18,11 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     color: var(--text);
     line-height: 1.4;
-
-    /* Fondo infinito */
-    /* background gradient + solid fallback color to avoid white flash during repaints */
     background-color: #0f0c29;
     background: linear-gradient(135deg, #0f0c29, #302b63, #24243e, #0f0c29);
     background-size: 400% 400%;
-    /* use scroll on mobile to avoid issues with fixed backgrounds */
     background-attachment: scroll;
-    /* slightly slower and smoother animation to reduce heavy repaints */
     animation: gradientShift 30s linear infinite;
-    /* promote layer to compositor to reduce white flashes */
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
     will-change: background-position;
@@ -42,7 +35,6 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* HEADER */
 .mobile-header {
     padding: 1.2rem;
     text-align: center;
@@ -67,7 +59,6 @@ body {
     color: #fffde6;
 }
 
-/* NAVIGATION */
 .mobile-nav {
     display: flex;
     flex-direction: column;
@@ -76,7 +67,6 @@ body {
     padding: 0 0.4rem;
 }
 
-/* BUTTONS */
 .btn {
     display: block;
     text-align: center;
@@ -94,7 +84,6 @@ body {
     transform: scale(0.995);
 }
 
-/* BACK BUTTON */
 .back-ghost {
     background: rgba(255,255,255,0.18);
     color: var(--text);
@@ -108,12 +97,10 @@ body {
     box-shadow: 0 4px 12px rgba(255,255,255,0.08);
 }
 
-/* HIDDEN SECTIONS */
 .section-hidden {
     display: none;
 }
 
-/* INFO BOX */
 .mobile-info {
     background: rgba(34,34,40,0.6);
     padding: 1rem;
@@ -122,7 +109,6 @@ body {
     border: 1px solid #444;
 }
 
-/* COMMISSION BUTTONS */
 .comm-list, .contact-list {
     display: flex;
     flex-direction: column;
@@ -148,7 +134,6 @@ body {
     box-shadow: 0 28px 56px rgba(165,142,255,0.24);
 }
 
-/* CONTACT BUTTONS */
 .contact-btn {
     display: flex;
     align-items: center;
@@ -164,17 +149,16 @@ body {
     position: relative;
     padding-left: 52px;
 }
+
 .contact-btn:hover {
     transform: translateY(-4px);
 }
 
-/* Contact platform colors (hover) */
 .contact-btn.bluesky { border-color: #0285ff; box-shadow: 0 0 20px #0285ff55; background: #0285ff20; }
 .contact-btn.twitter { border-color: #fff; box-shadow: 0 0 20px #ffffff55; background: #ffffff15; color: #fff; }
 .contact-btn.deviantart { border-color: #05cc47; box-shadow: 0 0 20px #05cc4755; background: #05cc4720; }
 .contact-btn.discord { border-color: #5865f2; box-shadow: 0 0 20px #5865f255; background: #5865f220; }
 
-/* Contact icons */
 .contact-btn::before {
     content: "";
     position: absolute;
@@ -188,7 +172,6 @@ body {
     opacity: 0.98;
 }
 
-/* SLIDE ANIMATION */
 .slide-btn {
     animation: slideDownBtn 0.36s cubic-bezier(0.2,0,0.2,1);
 }
@@ -197,7 +180,6 @@ body {
     to   { transform: translateY(0) scale(1); opacity: 1; }
 }
 
-/* OVERLAY / MODAL */
 .overlay {
     position: fixed;
     inset: 0;
@@ -210,10 +192,12 @@ body {
     pointer-events: none;
     transition: opacity 220ms ease;
 }
+
 .overlay.show {
     opacity: 1;
     pointer-events: auto;
 }
+
 .overlay .panel {
     width: min(92vw,600px);
     background: var(--panel-bg);
@@ -226,10 +210,12 @@ body {
     transition: transform 320ms cubic-bezier(0.2,0,0.2,1), opacity 220ms;
     border: 1px solid var(--panel-border);
 }
+
 .overlay.show .panel {
     transform: translateY(0) scale(1);
     opacity: 1;
 }
+
 .overlay .overlay-close {
     position: absolute;
     top: 12px;
@@ -241,28 +227,29 @@ body {
     cursor: pointer;
 }
 
-/* FOOTER */
 .mobile-footer {
     text-align: center;
     margin-top: 1rem;
 }
+
 .link {
     color: var(--accent);
     text-decoration: none;
     font-weight: 600;
 }
 
-/* RESPONSIVE */
 @media (min-width: 600px) {
     .mobile-main {
         max-width: 540px;
         margin: 0 auto;
     }
 }
-@media (max-width: 768px){
+
+@media (max-width: 768px) {
     body { background-attachment: scroll; background-size: 600% 600%; }
 }
-@media (max-width: 480px){
+
+@media (max-width: 480px) {
     .btn, .commission-btn, .contact-btn {
         font-size: 0.95rem;
         padding: 0.9rem;
@@ -271,7 +258,6 @@ body {
     .contact-btn { padding-left: 48px; }
 }
 
-/* Respect user's reduced-motion preference */
 @media (prefers-reduced-motion: reduce) {
     body { animation: none !important; background-position: 50% 50% !important; }
     .slide-btn { animation: none !important; }

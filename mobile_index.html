@@ -7,6 +7,7 @@
     <title>Raccoonguy09 — Mobile</title>
     <link rel="icon" type="image/x-icon" href="Images/favicon.ico">
     <link rel="stylesheet" href="mobile.css">
+    <script src="config.js"></script>
     <script src="mobile.js" defer></script>
 </head>
 
@@ -31,12 +32,16 @@
         <section id="commissions-section" class="section-hidden">
             <h3>Commissions</h3>
             <div class="comm-list">
-                <button class="commission-btn" data-title="Emotes" data-price="$3.5–$6.5"
-                    data-desc="Small emote drawings, delivered as PNG">Emotes — $3.5–$6.5</button>
-                <button class="commission-btn" data-title="Doodles" data-price="$5–$15"
-                    data-desc="Quick doodles and sketches">Doodles — $5–$15</button>
-                <button class="commission-btn" data-title="Digital Painting" data-price="$100–$200"
-                    data-desc="Full digital paintings with background">Digital Painting — $100–$200</button>
+                <button class="commission-btn" data-title="Fullbodies" data-price="£15 (+£5 shading, +£5 rendering)"
+                    data-desc="Full character illustrations">Fullbodies — £15 (+£5 shading, +£5 rendering)</button>
+                <button class="commission-btn" data-title="Half Bodies" data-price="£10 (+£5 shading, +£5 rendering)"
+                    data-desc="Waist-up character illustrations">Half Bodies — £10 (+£5 shading, +£5 rendering)</button>
+                <button class="commission-btn" data-title="Icons" data-price="£5 (+£5 shading, +£5 rendering)"
+                    data-desc="Small character icons and avatars">Icons — £5 (+£5 shading, +£5 rendering)</button>
+                <button class="commission-btn" data-title="Emotes" data-price="£5"
+                    data-desc="Emojis. delivered as PNG">Emotes — £5</button>
+                <button class="commission-btn" data-title="Transformation Sequences" data-price="£15 (+£10 per extra, +£5 shading, +£5 rendering)"
+                    data-desc="Multi-panel transformation artwork">Transformation Sequences — £15 (+£10 per extra, +£5 shading, +£5 rendering)</button>
             </div>
             <button class="btn back-ghost mobile-back">Back</button>
         </section>
@@ -45,12 +50,12 @@
         <section id="contact-section" class="section-hidden">
             <h3>Contact</h3>
             <div class="contact-list">
-                <a class="btn contact-btn bluesky" href="https://bsky.app/profile/racoguy.bsky.social"
+                <a class="btn contact-btn bluesky" href="#" onclick="window.open(CONFIG.social.bluesky, '_blank'); return false;"
                     target="_blank">Bluesky</a>
-                <a class="btn contact-btn twitter" href="https://twitter.com/raccoonguy_09" target="_blank">Twitter</a>
-                <a class="btn contact-btn deviantart" href="https://www.deviantart.com/raccoonguy09"
+                <a class="btn contact-btn twitter" href="#" onclick="window.open(CONFIG.social.twitter, '_blank'); return false;" target="_blank">Twitter</a>
+                <a class="btn contact-btn deviantart" href="#" onclick="window.open(CONFIG.social.deviantart, '_blank'); return false;"
                     target="_blank">DeviantArt</a>
-                <button class="btn contact-btn discord" id="copy-discord" data-discord="Raccoon#1234">Copy
+                <button class="btn contact-btn discord" id="copy-discord">Copy
                     Discord</button>
 
             </div>

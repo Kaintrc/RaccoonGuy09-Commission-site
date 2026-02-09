@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function(){
     // Copy Discord
     const copyDiscordBtn = document.getElementById('copy-discord');
     copyDiscordBtn?.addEventListener('click', () => {
-        const text = copyDiscordBtn.dataset.discord || '';
+        const text = CONFIG.social.discord || '';
         navigator.clipboard?.writeText(text).then(() => {
             copyDiscordBtn.textContent = 'Copied ✓';
             setTimeout(()=> copyDiscordBtn.textContent = 'Copy Discord', 1800);

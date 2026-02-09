@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="config.js"></script>
   <script src="mobile.js" defer></script>
   <title>Raccoonguy09's Commission Site</title>
   <link rel="stylesheet" href="style.css">
@@ -31,20 +32,30 @@
 
     <section id="commissions" class="page">
       <div class="cards">
+        <div class="card" onclick="showCommission('fullbodies')">
+          <h3>Fullbodies</h3>
+          <p>Full character illustrations.</p>
+          <p class="price">£15 (+£5 shading, +£5 rendering)</p>
+        </div>
+        <div class="card" onclick="showCommission('halfbodies')">
+          <h3>Half Bodies</h3>
+          <p>Waist-up character illustrations.</p>
+          <p class="price">£10 (+£5 shading, +£5 rendering)</p>
+        </div>
+        <div class="card" onclick="showCommission('icons')">
+          <h3>Icons</h3>
+          <p>Small character icons.</p>
+          <p class="price">£5 (+£5 shading, +£5 rendering)</p>
+        </div>
         <div class="card" onclick="showCommission('emotes')">
           <h3>Emotes</h3>
-          <p>Placeholder.</p>
-          <p class="price">$3.5 – $6.5</p>
+          <p>Emojis. delivered as PNG.</p>
+          <p class="price">£5</p>
         </div>
-        <div class="card" onclick="showCommission('doodles')">
-          <h3>Doodles</h3>
-          <p>Placeholder.</p>
-          <p class="price">$5 – $15</p>
-        </div>
-        <div class="card" onclick="showCommission('painting')">
-          <h3>Digital Painting</h3>
-          <p>Placeholder.</p>
-          <p class="price">$100 – $200</p>
+        <div class="card" onclick="showCommission('transformations')">
+          <h3>Transformation Sequences</h3>
+          <p>Multi-panel transformation artwork.</p>
+          <p class="price">£15 (+£10 per extra, +£5 shading, +£5 rendering)</p>
         </div>
       </div>
     </section>
@@ -65,17 +76,17 @@
       <p>Want to commission something? Reach out via:</p>
       <div class="contact-buttons">
         <button id="blueskyBtn" class="contact-btn bluesky"
-          onclick="window.open('https://bsky.app/profile/racoguy.bsky.social', '_blank')">
+          onclick="window.open(CONFIG.social.bluesky, '_blank')">
           <span class="icon bluesky-icon"></span> Bluesky
         </button>
 
         <button id="twitterBtn" class="contact-btn twitter"
-          onclick="window.open('https://twitter.com/raccoonguy_09', '_blank')">
+          onclick="window.open(CONFIG.social.twitter, '_blank')">
           <span class="icon twitter-icon"></span> Twitter
         </button>
 
         <button id="deviantartBtn" class="contact-btn deviantart"
-          onclick="window.open('https://www.deviantart.com/raccoonguy09', '_blank')">
+          onclick="window.open(CONFIG.social.deviantart, '_blank')">
           <span class="icon deviantart-icon"></span> DeviantArt
         </button>
 
@@ -103,7 +114,7 @@
   </div>
 
   <div id="corner-gif-wrapper" aria-hidden="true">
-    <img id="corner-gif" src="Gifs/PlaceHolder_Raco2.gif" alt="corner gif">
+    <img id="corner-gif" src="Gifs/Bouncy.gif" alt="corner gif">
   </div>
 
   <script src="script.js"></script>

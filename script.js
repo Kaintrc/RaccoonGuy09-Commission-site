@@ -1,5 +1,5 @@
 function copyDiscord() {
-  const discordUser = "raccoonguy09";
+  const discordUser = CONFIG.social.discord;
   navigator.clipboard.writeText(discordUser).then(() => {
 
     const popup = document.getElementById("discordCopyMsg");
@@ -12,23 +12,35 @@ function copyDiscord() {
 }
 
 const commissions = {
+  fullbodies: {
+    title: "Fullbodies",
+    description: "Full character illustration.",
+    price: "£10 (+£5 shading, +£5 rendering)",
+    images: ["Images/Fullbody1.png"]
+  },
+  halfbodies: {
+    title: "Half Bodies",
+    description: "Waist-up character illustration.",
+    price: "£10 (+£5 shading, +£5 rendering)",
+    images: ["Images/Halfbody1.png", "Images/Halfbody2.png"]
+  },
+  icons: {
+    title: "Icons",
+    description: "Small character icons and avatar.",
+    price: "£5 (+£5 shading, +£5 rendering)",
+    images: ["Images/Icon1.png", "Images/Icon2.png", "Images/Icon3.png", "Images/Icon4.png", "Images/Icon5.jpg", "Images/Icon6.png"]
+  },
   emotes: {
     title: "Emotes",
-    description: "Placeholder",
-    price: "$3.5 – $6.5",
-    images: ["Images/HypnoTaerie_squeesh.png", "Images/Pix_blep.png", "Images/Taerie_big_eyes_emote.png"]
+    description: "Emojis, delivered as PNG.",
+    price: "£5",
+    images: ["Images/Emoji1.png"]
   },
-  doodles: {
-    title: "Doodles",
-    description: "Placeholder.",
-    price: "$5 – $15",
-    images: ["Images/Doodle1.png", "Images/Doodle2.png", "Images/Doodle3.png"]
-  },
-  painting: {
-    title: "Digital Painting",
-    description: "Placeholder.",
-    price: "$100 – $200",
-    images: []
+  transformations: {
+    title: "Transformation Sequences",
+    description: "Multi-panel transformation artwork. Starts at 2.",
+    price: "£15 (+£10 per extra, +£5 shading, +£5 rendering)",
+    images: ["Images/TransformationSequence1.png", "Images/TransformationSequence2.png", "Images/TransformationSequence3.png", "Images/TransformationSequence4.png", "Images/TransformationSequence5.png", "Images/TransformationSequence6.png"]
   }
 };
 
